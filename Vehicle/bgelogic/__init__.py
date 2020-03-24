@@ -5848,6 +5848,44 @@ class ActionApplyForce(ActionCell):
         self.done = True
 
 
+class ActionApplyImpulse(ActionCell):
+    def __init__(self):
+        ActionCell.__init__(self)
+        self.condition = None
+        self.game_object = None
+        self.point = None
+        self.impulse = None
+        self.done = None
+        self.OUT = LogicNetworkSubCell(self, self.get_done)
+
+    def get_done(self):
+        return self.done
+
+    def evaluate(self):
+        self.done = False
+        condition = self.get_parameter_value(self.condition)
+        if condition is LogicNetworkCell.STATUS_WAITING:
+            return
+        if not condition:
+            return
+        game_object = self.get_parameter_value(self.game_object)
+        if game_object is LogicNetworkCell.STATUS_WAITING:
+            return
+        point = self.get_parameter_value(self.point)
+        if point is LogicNetworkCell.STATUS_WAITING:
+            return
+        impulse = self.get_parameter_value(self.impulse)
+        if impulse is LogicNetworkCell.STATUS_WAITING:
+            return
+        local = self.local
+        self._set_ready()
+        if none_or_invalid(game_object):
+            return
+        if impulse:
+            game_object.applyImpulse(point, impulse, local)
+        self.done = True
+
+
 class ActionCharacterJump(ActionCell):
     def __init__(self):
         ActionCell.__init__(self)

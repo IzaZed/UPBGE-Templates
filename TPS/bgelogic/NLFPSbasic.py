@@ -37,17 +37,11 @@ def _initialize(owner):
     CON0028 = bgelogic.ConditionMousePressed()
     ACT0029 = bgelogic.ActionMouseLook()
     PAR0030 = bgelogic.ValueSwitch()
-    PAR0031 = bgelogic.ParameterArithmeticOp()
-    PAR0032 = bgelogic.ParameterArithmeticOp()
-    ACT0033 = bgelogic.ActionApplyForce()
-    PAR0034 = bgelogic.ParameterVectorMath()
-    CON0035 = bgelogic.ConditionMousePressed()
-    ACT0036 = bgelogic.ActionRayPick()
-    PAR0037 = bgelogic.ParameterObjectAttribute()
-    PAR0038 = bgelogic.ParameterObjectAttribute()
-    ACT0039 = bgelogic.ActionSetObjectAttribute()
-    CON0040 = bgelogic.ConditionOnUpdate()
-    PAR0041 = bgelogic.ParameterObjectAttribute()
+    CON0031 = bgelogic.ConditionMousePressed()
+    PAR0032 = bgelogic.ParameterObjectAttribute()
+    PAR0033 = bgelogic.ParameterObjectAttribute()
+    ACT0034 = bgelogic.ActionApplyImpulse()
+    ACT0035 = bgelogic.ActionRayPick()
     CON0000.key_code = bge.events.WKEY
     CON0000.pulse = True
     CON0001.key_code = bge.events.SKEY
@@ -134,37 +128,22 @@ def _initialize(owner):
     PAR0030.condition = CON0028
     PAR0030.val_a = 1.0
     PAR0030.val_b = 0.30000001192092896
-    PAR0031.operator = bgelogic.ParameterArithmeticOp.op_by_code("MUL")
-    PAR0031.operand_a = ACT0036.NORMAL
-    PAR0031.operand_b = -200.0
-    PAR0032.operator = bgelogic.ParameterArithmeticOp.op_by_code("MUL")
-    PAR0032.operand_a = ACT0036.DIRECTION
-    PAR0032.operand_b = 500.0
-    ACT0033.local = False
-    ACT0033.condition = ACT0036
-    ACT0033.game_object = ACT0036.PICKED_OBJECT
-    ACT0033.force = PAR0034
-    PAR0034.op = 'lerp'
-    PAR0034.vector = PAR0031
-    PAR0034.vector_2 = PAR0032
-    PAR0034.factor = 0.5
-    CON0035.mouse_button_code = bge.events.LEFTMOUSE
-    CON0035.pulse = False
-    ACT0036.condition = CON0035
-    ACT0036.origin = PAR0037
-    ACT0036.destination = PAR0038
-    ACT0036.property_name = ""
-    ACT0036.distance = 100.0
-    PAR0037.game_object = "Object:Nozzle"
-    PAR0037.attribute_name = "worldPosition"
-    PAR0038.game_object = "Object:Aim"
-    PAR0038.attribute_name = "worldPosition"
-    ACT0039.condition = CON0040
-    ACT0039.game_object = None
-    ACT0039.attribute_value = PAR0041
-    ACT0039.value_type = 'worldPosition'
-    PAR0041.game_object = None
-    PAR0041.attribute_name = "worldPosition"
+    CON0031.mouse_button_code = bge.events.LEFTMOUSE
+    CON0031.pulse = False
+    PAR0032.game_object = "Object:Nozzle"
+    PAR0032.attribute_name = "worldPosition"
+    PAR0033.game_object = "Object:Aim"
+    PAR0033.attribute_name = "worldPosition"
+    ACT0034.local = False
+    ACT0034.condition = ACT0035
+    ACT0034.game_object = ACT0035.PICKED_OBJECT
+    ACT0034.point = ACT0035.POINT
+    ACT0034.impulse = ACT0035.DIRECTION
+    ACT0035.condition = CON0031
+    ACT0035.origin = PAR0032
+    ACT0035.destination = PAR0033
+    ACT0035.property_name = ""
+    ACT0035.distance = 100.0
     network.add_cell(CON0000)
     network.add_cell(CON0002)
     network.add_cell(ACT0004)
@@ -175,9 +154,7 @@ def _initialize(owner):
     network.add_cell(CON0026)
     network.add_cell(CON0028)
     network.add_cell(PAR0030)
-    network.add_cell(CON0035)
-    network.add_cell(PAR0037)
-    network.add_cell(CON0040)
+    network.add_cell(PAR0032)
     network.add_cell(CON0001)
     network.add_cell(ACT0005)
     network.add_cell(CON0008)
@@ -187,24 +164,20 @@ def _initialize(owner):
     network.add_cell(PAR0021)
     network.add_cell(ACT0024)
     network.add_cell(CON0027)
-    network.add_cell(PAR0038)
-    network.add_cell(PAR0041)
+    network.add_cell(CON0031)
     network.add_cell(CON0003)
     network.add_cell(PAR0016)
     network.add_cell(PAR0025)
-    network.add_cell(ACT0036)
+    network.add_cell(PAR0033)
+    network.add_cell(ACT0035)
     network.add_cell(ACT0007)
     network.add_cell(PAR0017)
     network.add_cell(ACT0029)
-    network.add_cell(PAR0032)
-    network.add_cell(ACT0039)
     network.add_cell(CON0009)
     network.add_cell(PAR0018)
-    network.add_cell(PAR0031)
-    network.add_cell(PAR0034)
+    network.add_cell(ACT0034)
     network.add_cell(ACT0011)
     network.add_cell(PAR0019)
-    network.add_cell(ACT0033)
     network.add_cell(ACT0013)
     network.add_cell(ACT0022)
     owner["FPS_basic"] = network

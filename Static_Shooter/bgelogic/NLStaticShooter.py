@@ -21,13 +21,14 @@ def _initialize(owner):
     CON0012 = bgelogic.ConditionOnUpdate()
     ACT0013 = bgelogic.ActionAlignAxisToVector()
     ACT0014 = bgelogic.ActionRotateTo()
+    PAR0015 = bgelogic.ParameterActiveCamera()
     ACT0000.condition = CON0012
     ACT0000.moving_object = "Object:Turret"
     ACT0000.target_point = PAR0003
     ACT0000.rot_axis = 2
     ACT0000.front_axis = 1
     ACT0001.condition = CON0012
-    ACT0001.camera = "Object:Camera"
+    ACT0001.camera = PAR0015
     ACT0001.property = "target"
     ACT0001.distance = 100.0
     ACT0002.condition = ACT0001
@@ -80,12 +81,13 @@ def _initialize(owner):
     network.add_cell(ACT0000)
     network.add_cell(PAR0004)
     network.add_cell(ACT0013)
-    network.add_cell(ACT0001)
     network.add_cell(ACT0005)
-    network.add_cell(ACT0002)
-    network.add_cell(ACT0011)
+    network.add_cell(PAR0015)
+    network.add_cell(ACT0001)
     network.add_cell(ACT0007)
     network.add_cell(ACT0010)
+    network.add_cell(ACT0002)
+    network.add_cell(ACT0011)
     network.add_cell(ACT0009)
     owner["Static_Shooter"] = network
     network._owner = owner

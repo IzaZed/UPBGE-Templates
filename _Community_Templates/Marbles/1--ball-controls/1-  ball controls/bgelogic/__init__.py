@@ -4382,8 +4382,6 @@ class ActionSetObjectAttribute(ActionCell):
             )
         except Exception:
             print('Set Object Data Node: Could Not Set Value for {}!'.format(game_object_value))
-        if attribute_value_value == 'worldScale':
-            game_object_value.reinstancePhysicsMesh(game_object_value, game_object_value.meshes[0])
         self.done = True
 
 
@@ -5254,7 +5252,7 @@ class ActionRemoveParent(ActionCell):
             return
         if not child_object.parent:
             return
-        child_object.removeParent()
+        child_object.setParent(None)
         self.done = True
 
 
@@ -5569,11 +5567,14 @@ class ActionSetDynamics(ActionCell):
         self._set_ready()
         if none_or_invalid(game_object):
             return
+        print('Here shoudl asdak haonn')
         if activate:
+            print('activate')
             game_object.suspendDynamics(ghost)
         else:
+            print('deactiv')
             game_object.restoreDynamics()
-        self.done = True
+        self.done = False
 
 
 class ActionEndObject(ActionCell):

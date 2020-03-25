@@ -9,11 +9,11 @@ def _initialize(owner):
     CON0000 = bgelogic.ConditionOnInit()
     ACT0001 = bgelogic.ActionSetGameObjectGameProperty()
     ACT0002 = bgelogic.ActionCreateVehicle()
-    CON0003 = bgelogic.ConditionKeyPressed()
-    CON0004 = bgelogic.ConditionKeyPressed()
+    ACT0003 = bgelogic.VehicleApplyBraking()
+    ACT0004 = bgelogic.VehicleApplyForce()
     PAR0005 = bgelogic.ParameterObjectProperty()
-    ACT0006 = bgelogic.VehicleApplyForce()
-    ACT0007 = bgelogic.VehicleApplyBraking()
+    CON0006 = bgelogic.ConditionKeyPressed()
+    CON0007 = bgelogic.ConditionKeyPressed()
     ACT0001.condition = ACT0002.OUT
     ACT0001.game_object = "Object:Vehicle"
     ACT0001.property_name = "vehicle_wrapper"
@@ -26,30 +26,30 @@ def _initialize(owner):
     ACT0002.stiffness = 50.0
     ACT0002.damping = 5.0
     ACT0002.friction = 2.0
-    CON0003.key_code = bge.events.WKEY
-    CON0003.pulse = True
-    CON0004.key_code = bge.events.SKEY
-    CON0004.pulse = True
+    ACT0003.condition = CON0006
+    ACT0003.constraint = PAR0005
+    ACT0003.wheelcount = 85
+    ACT0003.power = 0.07000000029802322
+    ACT0003.value_type = 'ALL'
+    ACT0004.condition = CON0007
+    ACT0004.constraint = PAR0005
+    ACT0004.wheelcount = 2
+    ACT0004.power = 5.0
+    ACT0004.value_type = 'FRONT'
     PAR0005.game_object = "Object:Vehicle"
     PAR0005.property_name = "vehicle_wrapper"
-    ACT0006.condition = CON0003
-    ACT0006.constraint = PAR0005
-    ACT0006.wheelcount = 2
-    ACT0006.power = 5.0
-    ACT0006.value_type = 'FRONT'
-    ACT0007.condition = CON0004
-    ACT0007.constraint = PAR0005
-    ACT0007.wheelcount = 85
-    ACT0007.power = 0.07000000029802322
-    ACT0007.value_type = 'ALL'
+    CON0006.key_code = bge.events.SKEY
+    CON0006.pulse = True
+    CON0007.key_code = bge.events.WKEY
+    CON0007.pulse = True
     network.add_cell(CON0000)
     network.add_cell(ACT0002)
-    network.add_cell(CON0004)
-    network.add_cell(ACT0001)
     network.add_cell(PAR0005)
-    network.add_cell(ACT0007)
-    network.add_cell(CON0003)
-    network.add_cell(ACT0006)
+    network.add_cell(CON0007)
+    network.add_cell(ACT0001)
+    network.add_cell(ACT0004)
+    network.add_cell(CON0006)
+    network.add_cell(ACT0003)
     owner["Vehicle"] = network
     network._owner = owner
     network.setup()

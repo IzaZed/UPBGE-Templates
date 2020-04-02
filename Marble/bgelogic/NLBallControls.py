@@ -17,11 +17,11 @@ def _initialize(owner):
     CON0008 = bgelogic.ConditionKeyPressed()
     ACT0009 = bgelogic.ActionApplyForce()
     ACT0010 = bgelogic.ActionApplyForce()
-    ACT0011 = bgelogic.InvertValue()
-    ACT0012 = bgelogic.ActionApplyForce()
-    PAR0013 = bgelogic.ParameterSimpleValue()
+    ACT0011 = bgelogic.ActionApplyForce()
+    PAR0012 = bgelogic.ParameterSimpleValue()
+    ACT0013 = bgelogic.InvertValue()
     PAR0000.input_x = 0.0
-    PAR0000.input_y = ACT0011.OUT
+    PAR0000.input_y = ACT0013.OUT
     PAR0000.input_z = 0.0
     CON0001.key_code = bge.events.WKEY
     CON0001.pulse = True
@@ -29,18 +29,18 @@ def _initialize(owner):
     ACT0002.condition = CON0001
     ACT0002.game_object = "Object:Sphere"
     ACT0002.force = PAR0005.OUTV
-    PAR0003.input_x = ACT0011.OUT
+    PAR0003.input_x = ACT0013.OUT
     PAR0003.input_y = 0.0
     PAR0003.input_z = 0.0
     CON0004.key_code = bge.events.SKEY
     CON0004.pulse = True
-    PAR0005.input_x = PAR0013
+    PAR0005.input_x = PAR0012
     PAR0005.input_y = 0.0
     PAR0005.input_z = 0.0
     CON0006.key_code = bge.events.AKEY
     CON0006.pulse = True
     PAR0007.input_x = 0.0
-    PAR0007.input_y = PAR0013
+    PAR0007.input_y = PAR0012
     PAR0007.input_z = 0.0
     CON0008.key_code = bge.events.DKEY
     CON0008.pulse = True
@@ -52,24 +52,24 @@ def _initialize(owner):
     ACT0010.condition = CON0004
     ACT0010.game_object = "Object:Sphere"
     ACT0010.force = PAR0003.OUTV
-    ACT0011.value = PAR0013
-    ACT0012.local = False
-    ACT0012.condition = CON0008
-    ACT0012.game_object = "Object:Sphere"
-    ACT0012.force = PAR0000.OUTV
-    PAR0013.value = 10.0
+    ACT0011.local = False
+    ACT0011.condition = CON0008
+    ACT0011.game_object = "Object:Sphere"
+    ACT0011.force = PAR0000.OUTV
+    PAR0012.value = 10.0
+    ACT0013.value = PAR0012
     network.add_cell(CON0001)
     network.add_cell(CON0004)
     network.add_cell(CON0006)
     network.add_cell(CON0008)
-    network.add_cell(PAR0013)
+    network.add_cell(PAR0012)
     network.add_cell(PAR0005)
-    network.add_cell(ACT0011)
+    network.add_cell(ACT0013)
     network.add_cell(PAR0000)
     network.add_cell(PAR0003)
     network.add_cell(ACT0010)
     network.add_cell(ACT0002)
-    network.add_cell(ACT0012)
+    network.add_cell(ACT0011)
     network.add_cell(PAR0007)
     network.add_cell(ACT0009)
     owner["BallControls"] = network

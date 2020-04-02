@@ -5541,8 +5541,8 @@ class ActionSetDynamics(ActionCell):
     def __init__(self):
         self.condition = None
         self.game_object = None
-        self.ghost = None
         self.activate = False
+        self.ghost = None
         self.done = None
         self.OUT = LogicNetworkSubCell(self, self.get_done)
 

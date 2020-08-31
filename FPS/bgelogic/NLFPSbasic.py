@@ -1,4 +1,4 @@
-#MACHINE GENERATED
+# MACHINE GENERATED
 import bge
 import mathutils
 import bgelogic

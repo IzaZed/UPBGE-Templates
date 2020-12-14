@@ -6,55 +6,55 @@ import math
 
 def _initialize(owner):
     network = bgelogic.LogicNetwork()
-    PAR0000 = bgelogic.ParameterSimpleValue()
-    PAR0001 = bgelogic.ParameterSimpleValue()
-    PAR0002 = bgelogic.ParameterActiveCamera()
-    ACT0003 = bgelogic.ActionSetObjectAttribute()
-    CON0004 = bgelogic.ConditionOnUpdate()
-    PAR0005 = bgelogic.ParameterVectorMath()
-    PAR0006 = bgelogic.ParameterVector3Simple()
-    PAR0007 = bgelogic.ParameterObjectAttribute()
-    PAR0008 = bgelogic.ParameterVector3Split()
-    PAR0009 = bgelogic.ParameterArithmeticOp()
-    PAR0010 = bgelogic.ParameterArithmeticOp()
-    PAR0011 = bgelogic.ParameterObjectAttribute()
-    PAR0000.value = 30.0
-    PAR0001.value = 0.15000000596046448
-    ACT0003.condition = CON0004
-    ACT0003.xyz = {'x': True, 'y': True, 'z': True}
-    ACT0003.game_object = PAR0002
-    ACT0003.attribute_value = PAR0005
-    ACT0003.value_type = 'worldPosition'
-    PAR0005.op = 'lerp'
-    PAR0005.vector = PAR0007
-    PAR0005.vector_2 = PAR0006.OUTV
-    PAR0005.factor = PAR0001
-    PAR0006.input_x = PAR0009
-    PAR0006.input_y = PAR0008.OUTY
-    PAR0006.input_z = PAR0010
-    PAR0007.game_object = PAR0002
-    PAR0007.attribute_name = "worldPosition"
-    PAR0008.input_v = PAR0011
-    PAR0009.operator = bgelogic.ParameterArithmeticOp.op_by_code("ADD")
-    PAR0009.operand_a = PAR0008.OUTX
-    PAR0009.operand_b = PAR0000
-    PAR0010.operator = bgelogic.ParameterArithmeticOp.op_by_code("ADD")
-    PAR0010.operand_a = PAR0008.OUTZ
-    PAR0010.operand_b = 1.0
-    PAR0011.game_object = "NLO:U_O"
-    PAR0011.attribute_name = "worldPosition"
-    network.add_cell(PAR0000)
-    network.add_cell(PAR0002)
-    network.add_cell(CON0004)
+    ACT0000 = bgelogic.ActionSetObjectAttribute()
+    CON0001 = bgelogic.ConditionOnUpdate()
+    PAR0002 = bgelogic.ParameterVector3Split()
+    PAR0003 = bgelogic.ParameterArithmeticOp()
+    PAR0004 = bgelogic.ParameterArithmeticOp()
+    PAR0005 = bgelogic.ParameterObjectAttribute()
+    PAR0006 = bgelogic.ParameterSimpleValue()
+    PAR0007 = bgelogic.ParameterSimpleValue()
+    PAR0008 = bgelogic.ParameterVector3Simple()
+    PAR0009 = bgelogic.ParameterObjectAttribute()
+    PAR0010 = bgelogic.ParameterVectorMath()
+    PAR0011 = bgelogic.ParameterActiveCamera()
+    ACT0000.condition = CON0001
+    ACT0000.xyz = {'x': True, 'y': True, 'z': True}
+    ACT0000.game_object = PAR0011
+    ACT0000.attribute_value = PAR0010
+    ACT0000.value_type = 'worldPosition'
+    PAR0002.input_v = PAR0005
+    PAR0003.operator = bgelogic.ParameterArithmeticOp.op_by_code("ADD")
+    PAR0003.operand_a = PAR0002.OUTX
+    PAR0003.operand_b = PAR0006
+    PAR0004.operator = bgelogic.ParameterArithmeticOp.op_by_code("ADD")
+    PAR0004.operand_a = PAR0002.OUTZ
+    PAR0004.operand_b = 1.0
+    PAR0005.game_object = "NLO:U_O"
+    PAR0005.attribute_name = "worldPosition"
+    PAR0006.value = 30.0
+    PAR0007.value = 0.15000000596046448
+    PAR0008.input_x = PAR0003
+    PAR0008.input_y = PAR0002.OUTY
+    PAR0008.input_z = PAR0004
+    PAR0009.game_object = PAR0011
+    PAR0009.attribute_name = "worldPosition"
+    PAR0010.op = 'lerp'
+    PAR0010.vector = PAR0009
+    PAR0010.vector_2 = PAR0008.OUTV
+    PAR0010.factor = PAR0007
+    network.add_cell(CON0001)
+    network.add_cell(PAR0005)
     network.add_cell(PAR0007)
     network.add_cell(PAR0011)
-    network.add_cell(PAR0001)
-    network.add_cell(PAR0008)
-    network.add_cell(PAR0010)
+    network.add_cell(PAR0002)
+    network.add_cell(PAR0004)
     network.add_cell(PAR0009)
     network.add_cell(PAR0006)
-    network.add_cell(PAR0005)
-    network.add_cell(ACT0003)
+    network.add_cell(PAR0003)
+    network.add_cell(PAR0008)
+    network.add_cell(PAR0010)
+    network.add_cell(ACT0000)
     owner["Player_2D_Camera"] = network
     network._owner = owner
     network.setup()

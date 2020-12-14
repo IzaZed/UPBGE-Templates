@@ -652,7 +652,7 @@ class LogicNetworkCell(StatefulValueProducer):
     def has_status(self, status):
         return status == self._status
 
-    def get_game_object(self, param, scene=None):
+    def get_game_object(self, param, scene):
         if str(param) == 'NLO:U_O':
             return self.network._owner
         else:
@@ -814,10 +814,8 @@ class LogicNetwork(LogicNetworkCell):
     def create_aud_system(self):
         if not hasattr(bpy.types.Scene, 'nl_aud_system'):
             self.aud_system_owner = True
-            print('SETTING AUD SYSTEM')
             return AudioSystem()
         else:
-            print('Already initiated')
             return bpy.types.Scene.nl_aud_system
 
     def ray_cast(
@@ -8414,7 +8412,13 @@ class ActionPlayAction(ActionCell):
                     layer_weight != self.old_layer_weight or
                     speed != self.old_speed
                 ):
-                    next_frame = playing_frame + speed if playing_frame + speed <= end_frame else 0
+                    next_frame = (
+                        playing_frame + speed
+                        if
+                        playing_frame + speed <= end_frame
+                        else
+                        0
+                    )
                     game_object.stopAction(layer)
                     game_object.playAction(
                         action_name,
@@ -8659,7 +8663,11 @@ class ActionStart3DSound(ActionCell):
             for handle in handles:
                 if handle.status:
                     handle.location = speaker.worldPosition
-                    handle.orientation = speaker.worldOrientation.to_quaternion()
+                    handle.orientation = (
+                        speaker
+                        .worldOrientation
+                        .to_quaternion()
+                    )
                     if hasattr(speaker, 'worldLinearVelocity'):
                         handle.velocity = getattr(
                             speaker,
@@ -8749,7 +8757,11 @@ class ActionStart3DSoundAdv(ActionCell):
             for handle in handles:
                 if handle.status:
                     handle.location = speaker.worldPosition
-                    handle.orientation = speaker.worldOrientation.to_quaternion()
+                    handle.orientation = (
+                        speaker
+                        .worldOrientation
+                        .to_quaternion()
+                    )
                     if hasattr(speaker, 'worldLinearVelocity'):
                         handle.velocity = getattr(
                             speaker,

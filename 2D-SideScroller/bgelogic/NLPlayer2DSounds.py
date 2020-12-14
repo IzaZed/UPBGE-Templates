@@ -9,104 +9,104 @@ def _initialize(owner):
     ACT0000 = bgelogic.ActionStart3DSound()
     ACT0001 = bgelogic.ActionStartSound()
     CON0002 = bgelogic.ConditionOnInit()
-    ACT0003 = bgelogic.InitNewList()
+    PAR0003 = bgelogic.ParameterSimpleValue()
     PAR0004 = bgelogic.ParameterSimpleValue()
     PAR0005 = bgelogic.ParameterSimpleValue()
-    PAR0006 = bgelogic.ParameterSimpleValue()
-    PAR0007 = bgelogic.ParameterObjectProperty()
-    PAR0008 = bgelogic.ParameterFindChildByName()
-    PAR0009 = bgelogic.ParameterActionStatus()
-    CON0010 = bgelogic.ConditionLogicOp()
-    CON0011 = bgelogic.ConditionLogicOp()
-    CON0012 = bgelogic.ConditionOrList()
-    CON0013 = bgelogic.ConditionOnce()
-    PAR0014 = bgelogic.ValueSwitch()
-    PAR0015 = bgelogic.ParameterArithmeticOp()
+    PAR0006 = bgelogic.ParameterRandomListIndex()
+    PAR0007 = bgelogic.ValueSwitch()
+    ACT0008 = bgelogic.ActionGetCharacterInfo()
+    ACT0009 = bgelogic.AbsoluteValue()
+    PAR0010 = bgelogic.ParameterArithmeticOp()
+    PAR0011 = bgelogic.ValueSwitch()
+    PAR0012 = bgelogic.ParameterObjectProperty()
+    ACT0013 = bgelogic.InitNewList()
+    CON0014 = bgelogic.ConditionOrList()
+    CON0015 = bgelogic.ConditionOnce()
     PAR0016 = bgelogic.ParameterObjectProperty()
-    ACT0017 = bgelogic.AbsoluteValue()
-    ACT0018 = bgelogic.ActionGetCharacterInfo()
-    PAR0019 = bgelogic.ValueSwitch()
-    PAR0020 = bgelogic.ParameterRandomListIndex()
-    ACT0000.condition = CON0013
+    PAR0017 = bgelogic.ParameterFindChildByName()
+    PAR0018 = bgelogic.ParameterActionStatus()
+    CON0019 = bgelogic.ConditionLogicOp()
+    CON0020 = bgelogic.ConditionLogicOp()
+    ACT0000.condition = CON0015
     ACT0000.speaker = "NLO:U_O"
-    ACT0000.sound = PAR0020
+    ACT0000.sound = PAR0006
     ACT0000.loop_count = 0
     ACT0000.pitch = 0.0
-    ACT0000.volume = PAR0014.VAL
+    ACT0000.volume = PAR0011.VAL
     ACT0000.distance_max = 500.0
     ACT0001.condition = CON0002
     ACT0001.sound = "//Sounds/Podington_Bear_-_Bountiful.mp3"
     ACT0001.loop_count = -1
     ACT0001.pitch = 0.0
     ACT0001.volume = 1.0
-    ACT0003.value = PAR0005
-    ACT0003.value2 = PAR0006
-    ACT0003.value3 = PAR0004
-    ACT0003.value4 = None
-    ACT0003.value5 = None
-    ACT0003.value6 = None
-    PAR0004.value = "//Sounds/FootStep03.wav"
-    PAR0005.value = "//Sounds/FootStep01.wav"
-    PAR0006.value = "//Sounds/FootStep02.wav"
-    PAR0007.game_object = "NLO:U_O"
-    PAR0007.property_name = "landed"
-    PAR0008.from_parent = "NLO:U_O"
-    PAR0008.child = "Player_Rig"
-    PAR0009.game_object = PAR0008
-    PAR0009.action_layer = 2
-    CON0010.threshold = 1.0
-    CON0010.param_a = PAR0009.ACTION_FRAME
-    CON0010.param_b = 40
-    CON0010.operator = 0
-    CON0011.threshold = 0.6000000238418579
-    CON0011.param_a = PAR0009.ACTION_FRAME
-    CON0011.param_b = 20
-    CON0011.operator = 0
-    CON0012.ca = CON0010
-    CON0012.cb = CON0011
-    CON0012.cc = PAR0007
-    CON0012.cd = False
-    CON0012.ce = False
-    CON0012.cf = False
-    CON0013.input_condition = CON0012
-    CON0013.repeat = True
-    CON0013.reset_time = 0.5
-    PAR0014.condition = PAR0007
-    PAR0014.val_a = PAR0019.VAL
-    PAR0014.val_b = 10.0
-    PAR0015.operator = bgelogic.ParameterArithmeticOp.op_by_code("MUL")
-    PAR0015.operand_a = ACT0017.OUT
-    PAR0015.operand_b = 5.0
+    PAR0003.value = "//Sounds/FootStep03.wav"
+    PAR0004.value = "//Sounds/FootStep01.wav"
+    PAR0005.value = "//Sounds/FootStep02.wav"
+    PAR0006.condition = CON0015
+    PAR0006.list = ACT0013.LIST
+    PAR0007.condition = ACT0008.ON_GROUND
+    PAR0007.val_a = 0.0
+    PAR0007.val_b = PAR0010
+    ACT0008.condition = True
+    ACT0008.game_object = "NLO:U_O"
+    ACT0009.value = PAR0012
+    PAR0010.operator = bgelogic.ParameterArithmeticOp.op_by_code("MUL")
+    PAR0010.operand_a = ACT0009.OUT
+    PAR0010.operand_b = 5.0
+    PAR0011.condition = PAR0016
+    PAR0011.val_a = PAR0007.VAL
+    PAR0011.val_b = 10.0
+    PAR0012.game_object = "NLO:U_O"
+    PAR0012.property_name = "running"
+    ACT0013.value = PAR0004
+    ACT0013.value2 = PAR0005
+    ACT0013.value3 = PAR0003
+    ACT0013.value4 = None
+    ACT0013.value5 = None
+    ACT0013.value6 = None
+    CON0014.ca = CON0019
+    CON0014.cb = CON0020
+    CON0014.cc = PAR0016
+    CON0014.cd = False
+    CON0014.ce = False
+    CON0014.cf = False
+    CON0015.input_condition = CON0014
+    CON0015.repeat = True
+    CON0015.reset_time = 0.5
     PAR0016.game_object = "NLO:U_O"
-    PAR0016.property_name = "running"
-    ACT0017.value = PAR0016
-    ACT0018.condition = True
-    ACT0018.game_object = "NLO:U_O"
-    PAR0019.condition = ACT0018.ON_GROUND
-    PAR0019.val_a = 0.0
-    PAR0019.val_b = PAR0015
-    PAR0020.condition = CON0013
-    PAR0020.list = ACT0003.LIST
+    PAR0016.property_name = "landed"
+    PAR0017.from_parent = "NLO:U_O"
+    PAR0017.child = "Player_Rig"
+    PAR0018.game_object = PAR0017
+    PAR0018.action_layer = 2
+    CON0019.threshold = 0.6000000238418579
+    CON0019.param_a = PAR0018.ACTION_FRAME
+    CON0019.param_b = 40
+    CON0019.operator = 0
+    CON0020.threshold = 0.6000000238418579
+    CON0020.param_a = PAR0018.ACTION_FRAME
+    CON0020.param_b = 20
+    CON0020.operator = 0
     network.add_cell(CON0002)
     network.add_cell(PAR0004)
-    network.add_cell(PAR0006)
-    network.add_cell(PAR0008)
+    network.add_cell(ACT0008)
+    network.add_cell(PAR0012)
     network.add_cell(PAR0016)
-    network.add_cell(ACT0018)
     network.add_cell(ACT0001)
     network.add_cell(PAR0005)
-    network.add_cell(PAR0009)
-    network.add_cell(CON0011)
-    network.add_cell(ACT0017)
-    network.add_cell(ACT0003)
-    network.add_cell(CON0010)
-    network.add_cell(PAR0015)
+    network.add_cell(ACT0009)
+    network.add_cell(PAR0017)
+    network.add_cell(PAR0003)
+    network.add_cell(PAR0010)
+    network.add_cell(ACT0013)
+    network.add_cell(PAR0018)
+    network.add_cell(CON0020)
     network.add_cell(PAR0007)
-    network.add_cell(PAR0019)
-    network.add_cell(CON0012)
-    network.add_cell(PAR0014)
-    network.add_cell(CON0013)
-    network.add_cell(PAR0020)
+    network.add_cell(CON0019)
+    network.add_cell(PAR0011)
+    network.add_cell(CON0014)
+    network.add_cell(CON0015)
+    network.add_cell(PAR0006)
     network.add_cell(ACT0000)
     owner["Player_2D_Sounds"] = network
     network._owner = owner

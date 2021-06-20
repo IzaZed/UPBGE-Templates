@@ -1,4 +1,4 @@
-#MACHINE GENERATED
+# MACHINE GENERATED
 import bge
 import mathutils
 import bgelogic
@@ -6,81 +6,85 @@ import math
 
 def _initialize(owner):
     network = bgelogic.LogicNetwork()
-    PAR0000 = bgelogic.ParameterVector3Simple()
-    CON0001 = bgelogic.ConditionKeyPressed()
-    ACT0002 = bgelogic.ActionApplyForce()
-    PAR0003 = bgelogic.ParameterVector3Simple()
-    CON0004 = bgelogic.ConditionKeyPressed()
-    PAR0005 = bgelogic.ParameterVector3Simple()
-    CON0006 = bgelogic.ConditionKeyPressed()
-    PAR0007 = bgelogic.ParameterVector3Simple()
-    CON0008 = bgelogic.ConditionKeyPressed()
-    ACT0009 = bgelogic.ActionApplyForce()
-    ACT0010 = bgelogic.ActionApplyForce()
-    ACT0011 = bgelogic.ActionApplyForce()
-    PAR0012 = bgelogic.ParameterSimpleValue()
-    ACT0013 = bgelogic.InvertValue()
-    PAR0000.input_x = 0.0
-    PAR0000.input_y = ACT0013.OUT
-    PAR0000.input_z = 0.0
-    CON0001.key_code = bge.events.WKEY
-    CON0001.pulse = True
-    ACT0002.local = False
-    ACT0002.condition = CON0001
-    ACT0002.game_object = "Object:Sphere"
-    ACT0002.force = PAR0005.OUTV
-    PAR0003.input_x = ACT0013.OUT
-    PAR0003.input_y = 0.0
-    PAR0003.input_z = 0.0
-    CON0004.key_code = bge.events.SKEY
-    CON0004.pulse = True
-    PAR0005.input_x = PAR0012
-    PAR0005.input_y = 0.0
-    PAR0005.input_z = 0.0
-    CON0006.key_code = bge.events.AKEY
-    CON0006.pulse = True
-    PAR0007.input_x = 0.0
-    PAR0007.input_y = PAR0012
-    PAR0007.input_z = 0.0
-    CON0008.key_code = bge.events.DKEY
-    CON0008.pulse = True
+    ACT0000 = bgelogic.InvertValue()
+    PAR0001 = bgelogic.ParameterVector3Simple()
+    CON0002 = bgelogic.ConditionKeyPressed()
+    CON0003 = bgelogic.ConditionKeyPressed()
+    PAR0004 = bgelogic.ParameterVector3Simple()
+    CON0005 = bgelogic.ConditionKeyPressed()
+    ACT0006 = bgelogic.ActionApplyTorque()
+    ACT0007 = bgelogic.ActionApplyTorque()
+    ACT0008 = bgelogic.ActionApplyTorque()
+    ACT0009 = bgelogic.ActionApplyTorque()
+    CON0010 = bgelogic.ConditionKeyPressed()
+    ACT0011 = bgelogic.ActionPrint()
+    PAR0012 = bgelogic.ParameterVector3Simple()
+    PAR0013 = bgelogic.ParameterVector3Simple()
+    PAR0014 = bgelogic.ParameterSimpleValue()
+    ACT0000.value = PAR0014
+    PAR0001.input_x = PAR0014
+    PAR0001.input_y = 0.0
+    PAR0001.input_z = 0.0
+    CON0002.key_code = bge.events.SKEY
+    CON0002.pulse = True
+    CON0003.key_code = bge.events.AKEY
+    CON0003.pulse = True
+    PAR0004.input_x = ACT0000.OUT
+    PAR0004.input_y = 0.0
+    PAR0004.input_z = 0.0
+    CON0005.key_code = bge.events.DKEY
+    CON0005.pulse = True
+    ACT0006.local = False
+    ACT0006.condition = CON0002
+    ACT0006.game_object = "NLO:Sphere"
+    ACT0006.torque = PAR0013.OUTV
+    ACT0007.local = False
+    ACT0007.condition = CON0003
+    ACT0007.game_object = "NLO:Sphere"
+    ACT0007.torque = PAR0004.OUTV
+    ACT0008.local = False
+    ACT0008.condition = CON0005
+    ACT0008.game_object = "NLO:Sphere"
+    ACT0008.torque = PAR0001.OUTV
     ACT0009.local = False
-    ACT0009.condition = CON0006
-    ACT0009.game_object = "Object:Sphere"
-    ACT0009.force = PAR0007.OUTV
-    ACT0010.local = False
-    ACT0010.condition = CON0004
-    ACT0010.game_object = "Object:Sphere"
-    ACT0010.force = PAR0003.OUTV
-    ACT0011.local = False
-    ACT0011.condition = CON0008
-    ACT0011.game_object = "Object:Sphere"
-    ACT0011.force = PAR0000.OUTV
-    PAR0012.value = 10.0
-    ACT0013.value = PAR0012
-    network.add_cell(CON0001)
-    network.add_cell(CON0004)
-    network.add_cell(CON0006)
-    network.add_cell(CON0008)
-    network.add_cell(PAR0012)
-    network.add_cell(PAR0005)
-    network.add_cell(ACT0013)
-    network.add_cell(PAR0000)
-    network.add_cell(PAR0003)
-    network.add_cell(ACT0010)
-    network.add_cell(ACT0002)
+    ACT0009.condition = CON0010
+    ACT0009.game_object = "NLO:Sphere"
+    ACT0009.torque = PAR0012.OUTV
+    CON0010.key_code = bge.events.WKEY
+    CON0010.pulse = True
+    ACT0011.condition = False
+    ACT0011.value = ""
+    PAR0012.input_x = 0.0
+    PAR0012.input_y = PAR0014
+    PAR0012.input_z = 0.0
+    PAR0013.input_x = 0.0
+    PAR0013.input_y = ACT0000.OUT
+    PAR0013.input_z = 0.0
+    PAR0014.value = 5.0
+    network.add_cell(CON0002)
+    network.add_cell(CON0005)
+    network.add_cell(CON0010)
+    network.add_cell(PAR0014)
+    network.add_cell(ACT0000)
+    network.add_cell(CON0003)
     network.add_cell(ACT0011)
-    network.add_cell(PAR0007)
+    network.add_cell(PAR0013)
+    network.add_cell(PAR0001)
+    network.add_cell(ACT0006)
+    network.add_cell(ACT0008)
+    network.add_cell(PAR0012)
+    network.add_cell(PAR0004)
     network.add_cell(ACT0009)
-    owner["BallControls"] = network
+    network.add_cell(ACT0007)
+    owner["IGNLTree_BallControls"] = network
     network._owner = owner
     network.setup()
-    network.stopped = not owner.get('NODELOGIC__BallControls')
+    network.stopped = not owner.get('NL__BallControls')
     return network
 
 def pulse_network(controller):
     owner = controller.owner
-    network = owner.get("BallControls")
+    network = owner.get("IGNLTree_BallControls")
     if network is None:
         network = _initialize(owner)
     if network.stopped: return
